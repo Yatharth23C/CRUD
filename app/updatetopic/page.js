@@ -1,16 +1,15 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Title from "../components/Title";
 
-export default function Page() {
-    const router = useRouter();
+// Component that fetches and displays topic data
+const TopicEditor = ({ topicId }) => {
     const [topic, setTopic] = useState([]);
     const [currentTitle, setCurrentTitle] = useState('');
     const [currentDesc, setCurrentDesc] = useState('');
-    const searchParams = useSearchParams();
-    const topicId = searchParams.get('id');
+    const router = useRouter();
 
     useEffect(() => {
         const fetchTopic = async () => {
@@ -60,11 +59,6 @@ export default function Page() {
             console.error('No topic available to update');
         }
     };
-
-    if (!topicId) {
-        return <div>Loading...</div>; // Render this while waiting for topicId
-    }
-
     return (
         <div className="flex flex-col">
             <Title />
@@ -87,5 +81,16 @@ export default function Page() {
                 Update Topic
             </button>
         </div>
+    );
+};
+
+export default function Page() {
+    const searchParams = useSearchParams();
+    const topicId = searchParams.get('id');
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            {topicId ? <TopicEditor topicId={topicId} /> : <div>Loading...</div>}
+        </Suspense>
     );
 }
