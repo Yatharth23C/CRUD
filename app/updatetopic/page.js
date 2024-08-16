@@ -1,7 +1,8 @@
-'use client'
-import Title from "../components/Title";
-import { useState, useEffect } from 'react';
+'use client';
+
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Title from "../components/Title";
 
 export default function Page() {
     const router = useRouter();
@@ -26,7 +27,7 @@ export default function Page() {
             } catch (error) {
                 console.error(error);
             }
-        }
+        };
         fetchTopic();
     }, [topicId]);
 
@@ -52,11 +53,17 @@ export default function Page() {
                 }
             } catch (error) {
                 console.error('Error updating topic', error);
-            }finally{router.push('/')}
+            } finally {
+                router.push('/');
+            }
         } else {
             console.error('No topic available to update');
         }
     };
+
+    if (!topicId) {
+        return <div>Loading...</div>; // Render this while waiting for topicId
+    }
 
     return (
         <div className="flex flex-col">
