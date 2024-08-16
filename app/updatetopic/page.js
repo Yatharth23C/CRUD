@@ -90,3 +90,6 @@
 //         </Suspense> 
 //     );
 // }
+export default function page(){
+    return(<>Piss off</>)
+}
