@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -66,7 +66,7 @@ export default function Page() {
     }
 
     return (
-       <Suspense fallback={<div>Loading...</div>}><div className="flex flex-col">
+        <div className="flex flex-col">
             <Title />
             <input
                 value={currentTitle}
@@ -87,6 +87,5 @@ export default function Page() {
                 Update Topic
             </button>
         </div>
-        </Suspense> 
     );
 }
