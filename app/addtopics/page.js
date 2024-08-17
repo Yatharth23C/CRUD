@@ -1,6 +1,6 @@
 'use client'
 import Title from '../components/Title'
-import Link from 'next/link'
+
 import { useState, useEffect } from 'react'
 
 export default function Page() {
@@ -27,7 +27,7 @@ export default function Page() {
                 }
             };
             sendDataToMongoDB(obj);
-        }
+        }  
     }, [obj]);
 
     const handleClick = () => {

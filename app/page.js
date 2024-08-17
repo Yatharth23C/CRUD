@@ -2,7 +2,7 @@
 import Title from './components/Title'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+
 export default function Home() {
   const router = useRouter();
   const [topics, setTopics] = useState([])
