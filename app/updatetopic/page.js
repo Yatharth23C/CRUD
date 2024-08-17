@@ -10,8 +10,15 @@ export default function Page() {
     const [topic, setTopic] = useState([]);
     const [currentTitle, setCurrentTitle] = useState('');
     const [currentDesc, setCurrentDesc] = useState('');
-    const topicId = localStorage.getItem('topicId')
+    const [topicId,setTopicId] =useState(''); 
 
+    useEffect(() => {
+     
+        if (typeof window !== 'undefined') {
+            const id = localStorage.getItem('topicId');
+            setTopicId(id);
+        }
+    }, []);
     useEffect(() => {
         const fetchTopic = async () => {
             try {
