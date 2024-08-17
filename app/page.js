@@ -8,8 +8,10 @@ export default function Home() {
   const [topics, setTopics] = useState([])
   
   const gotoTopic=(topicId)=>{
+    localStorage.setItem('topicId',topicId)
     
-    router.push(`/updatetopic?id=${topicId}`)
+    
+    router.push(`/updatetopic`)
   }
 
   useEffect(() => {
