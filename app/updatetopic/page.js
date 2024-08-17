@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter, useSearchParams} from 'next/navigation';
 import React, {Suspense} from 'react';
 
-// Import your TopicFetcher component
+
 import TopicFetcher from '../components/TopicFetcher';
 import Title from '../components/Title';
 
@@ -38,10 +38,10 @@ const Page = () => {
     }
   };
 
-  return (
+  return (<Suspense fallback={<div>Loading topic data...</div>}>
     <div className="flex flex-col">
       <Title />
-      <Suspense fallback={<div>Loading topic data...</div>}>
+      
         <TopicFetcher topicId={topicId}>
           {(topic) => (
             <>
@@ -66,8 +66,8 @@ const Page = () => {
             </>
           )}
         </TopicFetcher>
-      </Suspense>
-    </div>
+      
+    </div></Suspense>
   );
 };
 
